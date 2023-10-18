@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Gantt</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <h1>Gráfico de Gantt</h1>
+
+    <canvas id="ganttChart"></canvas>
+
+    <script type="text/javascript">
+        var tasks = [
+            { name: 'Tarefa 1', start: '2023-10-18', end: '2023-10-20' },
+            { name: 'Tarefa 2', start: '2023-10-21', end: '2023-10-25' },
+            // Adicione mais tarefas conforme necessário
+        ];
+
+        var canvas = document.getElementById('ganttChart');
+        var ctx = canvas.getContext('2d');
+
+        var ganttChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: tasks.map(task => task.name),
+                datasets: [{
+                    data: tasks.map(task => ({ x: task.start, y: task.end })),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)', // Cor das barras
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        position: 'bottom',
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Tarefas',
+                        },
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>
